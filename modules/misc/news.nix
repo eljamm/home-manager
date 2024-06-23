@@ -1679,6 +1679,14 @@ in {
           https://github.com/rafaelmardojai/blanket for more.
         '';
       }
+
+      {
+        time = "2024-06-23T14:34:28+00:00";
+        condition = with config.programs.yazi; enable && (enableBashIntegration || enableZshIntegration || enableFishIntegration || enableNushellIntegration);
+        message = ''
+          Yazi's shell integration wrappers have been renamed from 'ya' to 'yy'.
+        '';
+      }
     ];
   };
 }

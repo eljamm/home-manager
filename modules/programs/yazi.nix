@@ -7,7 +7,7 @@ let
   tomlFormat = pkgs.formats.toml { };
 
   bashIntegration = ''
-    function ya() {
+    function ${cfg.shellAlias}() {
       local tmp="$(mktemp -t "yazi-cwd.XXXXX")"
       yazi "$@" --cwd-file="$tmp"
       if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
@@ -18,7 +18,7 @@ let
   '';
 
   fishIntegration = ''
-    function ya
+    function ${cfg.shellAlias}
       set tmp (mktemp -t "yazi-cwd.XXXXX")
       yazi $argv --cwd-file="$tmp"
       if set cwd (cat -- "$tmp"); and [ -n "$cwd" ]; and [ "$cwd" != "$PWD" ]
@@ -29,7 +29,7 @@ let
   '';
 
   nushellIntegration = ''
-    def --env ya [...args] {
+    def --env ${cfg.shellAlias} [...args] {
       let tmp = (mktemp -t "yazi-cwd.XXXXX")
       yazi ...$args --cwd-file $tmp
       let cwd = (open $tmp)
@@ -46,6 +46,15 @@ in {
     enable = mkEnableOption "yazi";
 
     package = mkPackageOption pkgs "yazi" { };
+
+    shellAlias = mkOption {
+      type = types.str;
+      default = "yy";
+      example = "ra";
+      description = ''
+        Yazi alias for the shell integration wrappers.
+      '';
+    };
 
     enableBashIntegration = mkEnableOption "Bash integration";
 
