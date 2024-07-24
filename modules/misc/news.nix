@@ -1827,6 +1827,18 @@ in {
           as systemd services.
         '';
       }
+
+      {
+        time = "2024-11-10T11:58:05+00:00";
+        condition = with config.programs.starship;
+          enable && enableFishIntegration;
+        message = ''
+          A new option `programs.starship.enableInteractive` is available for
+          the Fish shell that only enables starship if the shell is interactive.
+
+          Some plugins require this to be set to `false` to function correctly.
+        '';
+      }
     ];
   };
 }
