@@ -1,45 +1,48 @@
 { ... }:
 
 {
+  # yazi module again
   programs.yazi = {
     enable = true;
 
     keymap = {
-      input.keymap = [
+      input.prepend_keymap = [
         {
-          exec = "close";
+          run = "close";
           on = [ "<C-q>" ];
         }
         {
-          exec = "close --submit";
+          run = "close --submit";
           on = [ "<Enter>" ];
         }
         {
-          exec = "escape";
+          run = "escape";
           on = [ "<Esc>" ];
         }
         {
-          exec = "backspace";
+          run = "backspace";
           on = [ "<Backspace>" ];
         }
       ];
-      manager.keymap = [
+      manager.prepend_keymap = [
         {
-          exec = "escape";
+          run = "escape";
           on = [ "<Esc>" ];
         }
         {
-          exec = "quit";
+          run = "quit";
           on = [ "q" ];
         }
         {
-          exec = "close";
+          run = "close";
           on = [ "<C-q>" ];
         }
       ];
     };
     settings = {
-      log = { enabled = false; };
+      log = {
+        enabled = false;
+      };
       manager = {
         show_hidden = false;
         sort_by = "modified";
