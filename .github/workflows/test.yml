@@ -33,5 +33,3 @@ jobs:
       - run: nix build -v -L .#docs-json-module-maintainers
       - run: nix fmt
       - run: nix develop --ignore-environment -v -L .#all
-        # Somebody please help us fix the macos tests.
-        if: matrix.os != 'macos-latest'
