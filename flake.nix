@@ -129,6 +129,8 @@
           docs-html = docs.manual.html;
           docs-json = docs.options.json;
           docs-manpages = docs.manPages;
+          docs-json-module-maintainers =
+            docs.jsonModuleMaintainers; # Unstable, mainly for CI.
         } // testPackages // integrationTestPackages);
 
       defaultPackage = forAllSystems (system: self.packages.${system}.default);
